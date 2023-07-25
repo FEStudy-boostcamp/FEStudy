@@ -1,9 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import RecoilTest from "./Components/RecoilTest.jsx";
-import MobX from "./Components/MobX.jsx";
+import { MobX } from "./Components/MobX.jsx";
 import ContextAPI from "./Components/ContextAPI.jsx";
 
 function App() {
+
   return (
     <div className="App">
       <Routes>
