@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import App from "./App";
+import { launch } from "puppeteer";
 
-import "./index.css";
+import { toMatchImageSnapshot } from "jest-image-snapshot";
 
 test("renders jest test page", () => {
   render(<App />);
@@ -22,4 +23,17 @@ test("Red Background must be Red", () => {
 
   expect(styles.backgroundColor).toBe("red");
   expect(view).toMatchSnapshot();
+});
+
+expect.extend({ toMatchImageSnapshot });
+
+describe("some page", () => {
+  it("CreateReactApp home", async () => {
+    const browser = await launch();
+    const page = await browser.newPage();
+    await page.goto("http://localhost:3000");
+    const image = await page.screenshot();
+
+    expect(image).toMatchImageSnapshot();
+  });
 });
